@@ -1,0 +1,12 @@
+{%extends "layout.html"%}
+{%block body%}
+	{%for blog in blogs%}
+		<h1>{{blog.title}}</h1>
+		<a>{{blog.content|safe}}</a>
+		{%if blog.username==session['username']%}
+		<a href="{{url_for('delete_blog',blog_id=blog.id)}}" >delete</a>
+		{%endif%}
+	{%else%}
+		<a>Uh..you have never post a blog yet :C</a>
+	{%endfor%}
+{%endblock%}

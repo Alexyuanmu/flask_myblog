@@ -1,0 +1,18 @@
+{%extends "layout.html"%}
+{%block body%}
+	{%if not error%}
+		<h2>Welcome to MyBlog!</h2>
+		<a>You can finish the signing up in few steps:D</a>
+		<form action="{{url_for('signup')}}" method="post">
+			Username:<br>
+			<input type="text" name="username"><br>
+			Password:<br>
+			<input type="password" name="password"><br>
+			Join in now!<br>
+			<input type="submit" value="Submit"><br>
+		</form>
+	{%else%}
+		<a>ERROR:{{error}}</a>
+	{%endif%}
+{%endblock%}
+	

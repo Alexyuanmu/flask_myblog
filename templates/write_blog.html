@@ -1,0 +1,14 @@
+{%extends "layout.html"%}
+{%block body%}
+	{%if not error%}
+	<form action="{{url_for('write_blog')}}" method="post">
+	Title<br>
+	<input type="text" size="30" name="title"><br>
+	Contents<br>
+	<textarea name="content" rows="5" cols="40"></textarea>
+	<input type="submit" value="Finish~">	
+	</form>
+	{%else%}
+	<a>ERROR:{{error}}</a>
+	{%endif%}
+{%endblock%}

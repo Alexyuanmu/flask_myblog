@@ -1,0 +1,5 @@
+{%extends "layout.html"%}
+{%block body%}
+	<h1>User Profile</h1>
+	<a>Username: {{session['username']}}</a>
+{%endblock%}

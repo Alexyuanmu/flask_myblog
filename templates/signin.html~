@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--Variable:string error-->
+<html>
+	<head>
+		<title>MyBlog</title>	
+	</head>	
+	<body>
+	{%if error%}
+		<p>ERROR:{{error}}</p>
+	{%else%}
+		<p>Signin successfully!</p>
+	{%endif%}
+	</body>
+</html>

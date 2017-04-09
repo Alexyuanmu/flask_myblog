@@ -1,0 +1,19 @@
+body{
+	background-color: lightblue; 
+}
+
+
+a,h1{
+	color: black;
+	text-align: left;
+}
+
+h2{
+	color: darkred;
+	text-align: left;
+}
+
+p{
+	font-family: verdana;
+	font-size: 20px;
+}

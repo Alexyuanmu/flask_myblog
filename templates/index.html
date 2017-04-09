@@ -1,0 +1,12 @@
+{%extends "layout.html"%}
+{%block body%}
+	<ul class="blogs">
+	{%for blog in blogs%}
+		<li>
+			<a href="{{url_for('users',username=blog.username)}}" >{{blog.username}}</a>
+			<h2>{{blog.title}}</h2>{{blog.content|safe}}</li>
+	{%else%}
+		<li><em>Sorry,but no blog here so far:(</em></li>
+	{%endfor%}	
+	</ul>
+{%endblock%}
