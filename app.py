@@ -1,18 +1,4 @@
 from flask import Flask, request, render_template, flash, url_for, redirect, abort, session, g
-'''
-Flask: the application object
-request: a object,the data from a client's web page
-render_template: a function
-	(template_file_name,parameters)
-flash: a function
-url_for: a function
-	(where)
-redirect: a function
-	redirect(url_for(where))
-abort: for ERROR
-session: per-client data
-g: per-request data
-'''
 import os
 from sqlite3 import dbapi2 as sqlite3
 
@@ -22,7 +8,7 @@ app=Flask(__name__)
 #Configuration------------------------------------------
 app.config.update(dict(
 	DATABASE=os.path.join(app.root_path,'blog.db'),
-	DEBUG=True,
+	DEBUG=False,
 	SECRET_KEY='#include<alex>',
 	USERNAME='yuanmu',
 	PASSWORD='PB15111615'))
@@ -53,15 +39,10 @@ def index():
 	blogs = cur.fetchall()
 	return render_template('index.html',blogs=blogs)
 
-'''
-HTTP methods:
-	GET: want to get the info. from the page
-	POST: want to send info. to the server
-'''	
 @app.route('/signup',methods=['GET','POST'])
 def signup():
 	error = None
-	if request.method=='POST': #when user submit
+	if request.method=='POST': 
 		if not request.form['username'] or not request.form['password']:
 			error = 'Invalid infomation!'
 		else:
@@ -82,7 +63,6 @@ def login():
 		tmp = (request.form['username'],)
 		cur= db.execute('select passwd from users where username=?',tmp)
 		match = cur.fetchone()
-		#print match
 		if match[0]==request.form['password']:
 			session['logged_in']=True
 			session['username']=request.form['username']
@@ -124,7 +104,6 @@ def users(username):
 	tmp = (username,)
 	cur = db.execute('select id,username,title,content from blogs where username=?',tmp)
 	user_blogs = cur.fetchall()
-	#print user_blogs
 	return render_template('users.html',blogs=user_blogs)
 
 @app.route('/delete_blog/<blog_id>')
@@ -138,3 +117,4 @@ def delete_blog(blog_id):
 
 if __name__=='__main__':
 	app.run()
+	session['logged_in']=False
